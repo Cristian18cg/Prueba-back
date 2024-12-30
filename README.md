@@ -16,8 +16,8 @@ Proyecto Django REST Framework que implementa un sistema de autenticación con J
 
 1. **Clonar el repositorio:**
    ```bash
-   git clone <URL_DEL_REPOSITORIO>
-   cd <NOMBRE_DEL_REPOSITORIO>
+   git clone https://github.com/Cristian18cg/Prueba-back.git
+   cd projectLoginEom
 
 
 2. **Crear y activar el entorno virtual:**
