@@ -22,16 +22,6 @@ from django.utils.http import urlsafe_base64_decode
 from django.contrib.auth.tokens import default_token_generator
 from rest_framework.exceptions import AuthenticationFailed
 
-
-
-class IsSuperUser(permissions.BasePermission):
-    """
-    Permiso personalizado para restringir el acceso solo a superusuarios.
-
-    """
-
-    def has_permission(self, request, view):
-        return request.user and request.user.is_superuser
     
 class RegisterView(generics.CreateAPIView):
     permission_classes = [AllowAny]
@@ -41,7 +31,7 @@ class RegisterView(generics.CreateAPIView):
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
 
-        # Verificar si los datos son válidos
+        # Verificar si los datos son validos
         if not serializer.is_valid():
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -58,7 +48,7 @@ class RegisterView(generics.CreateAPIView):
             "first_name": user.first_name,
             "last_name": user.last_name,
         }
-        #La respuesta contiene los datos basicos del usuario
+        #La respuesta contiene los datos del usuario
         
         return Response(response_data, status=status.HTTP_201_CREATED)
    
@@ -98,7 +88,7 @@ class ProtectedView(APIView):
             if not request.user.is_authenticated:
                 raise AuthenticationFailed("El usuario no está autenticado.")
 
-            # Obtén la información del usuario
+            # Obtén la informacion del usuario
             user = request.user
             return Response({
                 'id': user.id,
@@ -109,7 +99,7 @@ class ProtectedView(APIView):
             }, status=status.HTTP_200_OK)
 
         except AuthenticationFailed as e:
-            # Manejo explícito para errores de autenticación
+            # Manejode errores de autenticacion
             return Response({
                 'error': str(e)
             }, status=status.HTTP_401_UNAUTHORIZED)

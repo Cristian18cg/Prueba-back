@@ -10,6 +10,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 class RegisterSerializer(serializers.ModelSerializer):
+    """ Validaciones de registro"""
     email = serializers.EmailField(
         required=True,
         validators=[
